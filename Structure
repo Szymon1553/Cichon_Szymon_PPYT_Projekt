@@ -1,0 +1,69 @@
+
+
+
+# Prepare basic structure
+
+## Cel
+Przygotowanie podstawowej struktury projektu aplikacji desktopowej w Pythonie z wykorzystaniem GitHub oraz GitFlow.
+
+---
+
+## Założenia projektu
+
+Aplikacja:
+- działa lokalnie,
+- jest napisana w Pythonie,
+- posiada GUI
+- posiada mapę,
+- przechowuje dane w strukturach Pythona,
+- korzysta z GitHub i GitFlow.
+
+---
+
+## Struktura projektu
+
+Cichon_Szymon_PPYT_Projekt/
+
+
+├── main.py
+├── model.py
+├── controller.py
+├── notebook.py
+└── Structure.txt
+
+---
+
+## Opis plików
+
+### main.py
+Uruchamianie aplikacji.
+
+### model.py
+Przechowywanie danych i klas obiektów.
+
+### controller.py
+Logika programu oraz funkcje CRUD.
+
+### notebook.py
+Plik pomocniczy do testowania kodu.
+
+---
+
+## Biblioteki
+
+- tkinter
+- tkintermapview
+- requests
+- beautifulsoup4
+
+---
+
+## GitFlow
+
+Główne branche:
+- main
+- test
+- qa
+
+Rozwiązanie problemu wikipedii:
+ - wykorzystanie danych numerycznych z geoportalu do lokalizacji użytkowników na mapie
