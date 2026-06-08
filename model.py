@@ -1,217 +1,57 @@
-# =========================================
-# CLASSES
-# =========================================
-
-class User:
-
-    def __init__(
-        self,
-        id,
-        login,
-        password
-    ):
-
-        self.id = id
-        self.login = login
-        self.password = password
-
-
-class Company:
-
-    def __init__(
-        self,
-        id,
-        name,
-        city,
-        latitude,
-        longitude
-    ):
-
-        self.id = id
-        self.name = name
-        self.city = city
-        self.latitude = latitude
-        self.longitude = longitude
-
-
-class Client:
-
-    def __init__(
-        self,
-        id,
-        name,
-        company_id,
-        city,
-        latitude,
-        longitude
-    ):
-
-        self.id = id
-        self.name = name
-        self.company_id = company_id
-        self.city = city
-        self.latitude = latitude
-        self.longitude = longitude
-
-
-class Employee:
-
-    def __init__(
-        self,
-        id,
-        name,
-        company_id,
-        position,
-        city,
-        latitude,
-        longitude
-    ):
-
-        self.id = id
-        self.name = name
-        self.company_id = company_id
-        self.position = position
-        self.city = city
-        self.latitude = latitude
-        self.longitude = longitude
-
-
-# =========================================
-# USERS
-# =========================================
-
 users = [
-
-    User(
-        1,
-        "admin",
-        "admin123"
-    ),
-
-    User(
-        2,
-        "szymon",
-        "ppyt2025"
-    )
+    {"id": 1, "login": "admin", "password": "admin123"},
+    {"id": 2, "login": "szymon", "password": "ppyt2025"}
 ]
-
-# =========================================
-# COMPANIES
-# =========================================
 
 companies = [
-
-    Company(
-        1,
-        "CleanHouse",
-        "Warszawa",
-        52.2297,
-        21.0122
-    ),
-
-    Company(
-        2,
-        "FreshCleaning",
-        "Kraków",
-        50.0647,
-        19.9450
-    ),
-
-    Company(
-        3,
-        "EcoWash",
-        "Gdańsk",
-        54.3520,
-        18.6466
-    )
+    {"id": 1, "name": "CleanHouse", "city": "Warszawa"},
+    {"id": 2, "name": "FreshCleaning", "city": "Kraków"},
+    {"id": 3, "name": "EcoWash", "city": "Gdańsk"}
 ]
-
-# =========================================
-# CLIENTS
-# =========================================
 
 clients = [
-
-    Client(
-        1,
-        "Jan Kowalski",
-        1,
-        "Warszawa",
-        52.2400,
-        21.0000
-    ),
-
-    Client(
-        2,
-        "Anna Nowak",
-        1,
-        "Warszawa",
-        52.2500,
-        21.0300
-    ),
-
-    Client(
-        3,
-        "Piotr Zieliński",
-        2,
-        "Kraków",
-        50.0600,
-        19.9500
-    ),
-
-    Client(
-        4,
-        "Maria Wiśniewska",
-        3,
-        "Gdańsk",
-        54.3600,
-        18.6400
-    )
+    {"id": 1, "name": "Jan Kowalski", "company_id": 1, "city": "Warszawa"},
+    {"id": 2, "name": "Anna Nowak", "company_id": 1, "city": "Warszawa"},
+    {"id": 3, "name": "Piotr Zieliński", "company_id": 2, "city": "Kraków"}
 ]
-
-# =========================================
-# EMPLOYEES
-# =========================================
 
 employees = [
-
-    Employee(
-        1,
-        "Tomasz Wiśniewski",
-        1,
-        "Cleaner",
-        "Warszawa",
-        52.2200,
-        21.0200
-    ),
-
-    Employee(
-        2,
-        "Karolina Mazur",
-        1,
-        "Driver",
-        "Warszawa",
-        52.2100,
-        21.0100
-    ),
-
-    Employee(
-        3,
-        "Michał Kaczmarek",
-        2,
-        "Cleaner",
-        "Kraków",
-        50.0500,
-        19.9400
-    ),
-
-    Employee(
-        4,
-        "Natalia Lewandowska",
-        3,
-        "Manager",
-        "Gdańsk",
-        54.3400,
-        18.6500
-    )
+    {"id": 1, "name": "Tomasz Wiśniewski", "company_id": 1, "position": "Cleaner", "city": "Warszawa"},
+    {"id": 2, "name": "Karolina Mazur", "company_id": 1, "position": "Driver", "city": "Warszawa"},
+    {"id": 3, "name": "Michał Kaczmarek", "company_id": 2, "position": "Cleaner", "city": "Kraków"}
 ]
+
+
+def get_database(mode):
+    if mode == "companies":
+        return companies
+    if mode == "clients":
+        return clients
+    if mode == "employees":
+        return employees
+    return []
+
+
+def load_cities():
+    cities = []
+    try:
+        with open("Miejscowosci.txt", encoding="utf-8") as file:
+            next(file)
+            for line in file:
+                if not line.strip():
+                    continue
+                parts = line.split()
+                if len(parts) < 3:
+                    continue
+                lat = parts[-1]
+                lon = parts[-2]
+                name = " ".join(parts[:-2])
+                cities.append({
+                    "name": name,
+                    "lon": lon,
+                    "lat": lat
+                })
+    except:
+        pass
+    return cities
+cities = load_cities()
