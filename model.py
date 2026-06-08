@@ -1,3 +1,8 @@
+import json
+import os
+
+
+
 users = [
     {"id": 1, "login": "admin", "password": "admin123"},
     {"id": 2, "login": "szymon", "password": "ppyt2025"}
@@ -54,4 +59,34 @@ def load_cities():
     except:
         pass
     return cities
+
+
+def save_data():
+    data = {
+        "companies": companies,
+        "clients": clients,
+        "employees": employees
+    }
+
+    with open("database.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+
+def load_data():
+    global companies
+    global clients
+    global employees
+
+    if not os.path.exists("database.json"):
+        save_data()
+        return
+
+    with open("database.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    companies[:] = data.get("companies", [])
+    clients[:] = data.get("clients", [])
+    employees[:] = data.get("employees", [])
+
+
 cities = load_cities()
