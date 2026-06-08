@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import tkintermapview
-from model import get_database, companies, clients, employees
+from model import get_database, companies, clients, employees, save_data, load_data
 from controller import *
 
 current_mode = "companies"
@@ -182,7 +182,7 @@ def add_object_gui():
         obj["position"] = entry_position.get()
 
     add_object(database, obj)
-
+    save_data()
     refresh()
 
 def edit_object_gui():
@@ -209,6 +209,7 @@ def edit_object_gui():
     if current_mode == "employees":
         selected_object["position"] = entry_position.get()
 
+    save_data()
     refresh()
 
 def delete_company(company_id):
@@ -221,7 +222,6 @@ def delete_object_gui():
 
     if selected_object is None:
         return
-
     answer = messagebox.askyesno(
         "Delete",
         "Are you sure?"
@@ -229,7 +229,6 @@ def delete_object_gui():
 
     if not answer:
         return
-
     if current_mode == "companies":
         delete_company(selected_object["id"])
     else:
@@ -238,6 +237,7 @@ def delete_object_gui():
 
     selected_object = None
 
+    save_data()
     refresh()
 
 def login():
@@ -336,6 +336,7 @@ def open_login_window():
     global entry_login
     global entry_password
 
+    load_data()
     login_window = Tk()
     login_window.title("Login")
     login_window.geometry("300x180")
