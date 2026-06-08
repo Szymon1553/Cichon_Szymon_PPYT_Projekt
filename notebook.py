@@ -19,6 +19,12 @@ def company_exists(company_id):
             return True
     return False
 
+def get_company_clients_count(company_id):
+    return len([client for client in clients if client["company_id"] == company_id])
+
+def get_company_employees_count(company_id):
+    return len([employee for employee in employees if employee["company_id"] == company_id])
+
 def new_object():
     global selected_object
     selected_object = None
@@ -26,6 +32,21 @@ def new_object():
     entry_company_id.delete(0, END)
     entry_position.delete(0, END)
     entry_city.delete(0, END)
+    if current_mode == "companies":
+        entry_company_id.config(state="readonly")
+        entry_position.config(state="normal")
+        entry_position.delete(0, END)
+        entry_position.config(state="disabled")
+
+    elif current_mode == "clients":
+        entry_company_id.config(state="normal")
+        entry_position.config(state="normal")
+        entry_position.delete(0, END)
+        entry_position.config(state="disabled")
+
+    elif current_mode == "employees":
+        entry_company_id.config(state="normal")
+        entry_position.config(state="normal")
 
 def refresh():
     global markers
@@ -41,24 +62,42 @@ def refresh():
         if lat is not None:
             markers.append(map_widget.set_marker(lat, lon, text=obj["name"]))
 
+    stats_label.config(
+        text=
+        f"Companies: {len(companies)}\n"
+        f"Clients: {len(clients)}\n"
+        f"Employees: {len(employees)}"
+    )
+
 def show_companies():
     global current_mode
     current_mode = "companies"
     refresh()
+    new_object()
 
 def show_clients():
     global current_mode
     current_mode = "clients"
     refresh()
+    new_object()
 
 def show_employees():
     global current_mode
     current_mode = "employees"
     refresh()
+    new_object()
 
 def load_selected(event=None):
     global selected_object
+    entry_name.delete(0, END)
 
+    entry_company_id.config(state="normal")
+    entry_company_id.delete(0, END)
+
+    entry_position.config(state="normal")
+    entry_position.delete(0, END)
+
+    entry_city.delete(0, END)
     selected = listbox_objects.curselection()
 
     if not selected:
@@ -75,18 +114,45 @@ def load_selected(event=None):
     entry_city.delete(0, END)
 
     entry_name.insert(0, selected_object.get("name", ""))
+    entry_city.insert(0, selected_object.get("city", ""))
 
     if current_mode == "companies":
         entry_company_id.config(state="normal")
-        entry_company_id.delete(0, END)
         entry_company_id.insert(0, selected_object["id"])
         entry_company_id.config(state="readonly")
-    else:
+
+        entry_position.config(state="normal")
+        entry_position.delete(0, END)
+        entry_position.config(state="disabled")
+
+    elif current_mode == "clients":
         entry_company_id.config(state="normal")
+        entry_company_id.insert(0, selected_object["company_id"])
 
-    entry_position.insert(0, selected_object.get("position", ""))
-    entry_city.insert(0, selected_object.get("city", ""))
+        entry_position.config(state="normal")
+        entry_position.delete(0, END)
+        entry_position.config(state="disabled")
 
+    elif current_mode == "employees":
+        entry_company_id.config(state="normal")
+        entry_company_id.insert(0, selected_object["company_id"])
+
+        entry_position.config(state="normal")
+        entry_position.insert(0, selected_object.get("position", ""))
+
+    if current_mode == "companies":
+        company_id = selected_object["id"]
+
+        clients_count = get_company_clients_count(company_id)
+        employees_count = get_company_employees_count(company_id)
+
+        company_info_label.config(
+            text=
+            f"Employees: {employees_count}\n"
+            f"Clients: {clients_count}"
+        )
+    else:
+        company_info_label.config(text="")
     lat, lon = get_coordinates(selected_object["city"])
 
     if lat is not None:
@@ -188,6 +254,8 @@ def open_main_window():
     global entry_company_id
     global entry_position
     global entry_city
+    global stats_label
+    global company_info_label
 
     window = Tk()
     window.title("Cleaning Company Manager")
@@ -210,6 +278,30 @@ def open_main_window():
 
     map_widget = tkintermapview.TkinterMapView(center_frame)
     map_widget.pack(side=LEFT, fill=BOTH, expand=True)
+    stats_frame = Frame(center_frame, width=180)
+    stats_frame.pack(side=RIGHT, fill=Y, padx=10)
+
+    Label(stats_frame, text="Statistics", font=("Arial", 12, "bold")).pack(pady=10)
+
+    stats_label = Label(
+        stats_frame,
+        justify=LEFT,
+        anchor="nw",
+        font=("Arial", 10)
+    )
+
+    stats_label.pack(fill=X)
+
+    Label(stats_frame, text="Company Details", font=("Arial", 12, "bold")).pack(pady=(20, 10))
+
+    company_info_label = Label(
+        stats_frame,
+        justify=LEFT,
+        anchor="nw",
+        font=("Arial", 10)
+    )
+
+    company_info_label.pack(fill=X)
     map_widget.set_position(52.0693, 19.4803)
     map_widget.set_zoom(6)
 
