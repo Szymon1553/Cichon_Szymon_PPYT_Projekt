@@ -1,0 +1,143 @@
+{
+    "companies": [
+        {
+            "id": 1,
+            "name": "CleanHouse",
+            "city": "Warszawa",
+            "latitude": 52.2297,
+            "longitude": 21.0122
+        },
+        {
+            "id": 2,
+            "name": "FreshCleaning",
+            "city": "Kraków",
+            "latitude": 50.0647,
+            "longitude": 19.945
+        },
+        {
+            "id": 3,
+            "name": "EcoWash",
+            "city": "Gdańsk",
+            "latitude": 54.352,
+            "longitude": 18.6466
+        },
+        {
+            "id": 4,
+            "name": "SparklePro",
+            "city": "Wrocław",
+            "latitude": 51.1079,
+            "longitude": 17.0385
+        },
+        {
+            "id": 5,
+            "name": "PerfectClean",
+            "city": "Poznań",
+            "latitude": 52.4064,
+            "longitude": 16.9252
+        },
+        {
+            "name": "ShinyStop",
+            "city": "Szczecin",
+            "latitude": 53.433333,
+            "longitude": 14.566667,
+            "id": 6
+        }
+    ],
+    "clients": [
+        {
+            "id": 1,
+            "name": "Jan Kowalski",
+            "company_id": 1,
+            "city": "Warszawa",
+            "latitude": 52.2331,
+            "longitude": 21.0178
+        },
+        {
+            "id": 2,
+            "name": "Anna Nowak",
+            "company_id": 1,
+            "city": "Warszawa",
+            "latitude": 52.2258,
+            "longitude": 21.0074
+        },
+        {
+            "id": 3,
+            "name": "Piotr Zieliński",
+            "company_id": 2,
+            "city": "Kraków",
+            "latitude": 50.0703,
+            "longitude": 19.9512
+        },
+        {
+            "id": 4,
+            "name": "Katarzyna Wiśniewska",
+            "company_id": 3,
+            "city": "Gdańsk",
+            "latitude": 54.3571,
+            "longitude": 18.6519
+        },
+        {
+            "id": 5,
+            "name": "Marek Lewandowski",
+            "company_id": 4,
+            "city": "Wrocław",
+            "latitude": 51.114,
+            "longitude": 17.0447
+        },
+        {
+            "name": "Andrzej Kmicic",
+            "city": "Skarżysko-Kamienna",
+            "company_id": 5,
+            "latitude": 51.120695,
+            "longitude": 20.854095,
+            "id": 6
+        }
+    ],
+    "employees": [
+        {
+            "id": 1,
+            "name": "Tomasz Wiśniewski",
+            "company_id": 1,
+            "position": "Cleaner",
+            "city": "Warszawa",
+            "latitude": 52.2305,
+            "longitude": 21.0135
+        },
+        {
+            "id": 2,
+            "name": "Karolina Mazur",
+            "company_id": 1,
+            "position": "Driver",
+            "city": "Warszawa",
+            "latitude": 52.2279,
+            "longitude": 21.0091
+        },
+        {
+            "id": 3,
+            "name": "Michał Kaczmarek",
+            "company_id": 2,
+            "position": "Cleaner",
+            "city": "Kraków",
+            "latitude": 50.0631,
+            "longitude": 19.9422
+        },
+        {
+            "id": 4,
+            "name": "Paweł Nowicki",
+            "company_id": 2,
+            "position": "Supervisor",
+            "city": "Kraków",
+            "latitude": 50.0679,
+            "longitude": 19.9486
+        },
+        {
+            "id": 5,
+            "name": "Monika Zielińska",
+            "company_id": 3,
+            "position": "Cleaner",
+            "city": "Gdańsk",
+            "latitude": 54.3497,
+            "longitude": 18.6414
+        }
+    ]
+}
