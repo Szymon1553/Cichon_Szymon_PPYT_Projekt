@@ -764,6 +764,7 @@ def open_login_window():
 
     Label(login_window, text="Login").pack(pady=5)
     entry_login = Entry(login_window)
+    entry_login.pack()
 
     Label(login_window, text="Hasło").pack(pady=5)
     entry_password = Entry(login_window, show="*")
