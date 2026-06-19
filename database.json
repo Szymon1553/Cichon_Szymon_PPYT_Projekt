@@ -8,13 +8,6 @@
             "longitude": 21.0122
         },
         {
-            "id": 2,
-            "name": "FreshCleaning",
-            "city": "Kraków",
-            "latitude": 50.0647,
-            "longitude": 19.945
-        },
-        {
             "id": 3,
             "name": "EcoWash",
             "city": "Gdańsk",
@@ -61,14 +54,6 @@
             "longitude": 21.0074
         },
         {
-            "id": 3,
-            "name": "Piotr Zieliński",
-            "company_id": 2,
-            "city": "Kraków",
-            "latitude": 50.0703,
-            "longitude": 19.9512
-        },
-        {
             "id": 4,
             "name": "Katarzyna Wiśniewska",
             "company_id": 3,
@@ -111,24 +96,6 @@
             "city": "Warszawa",
             "latitude": 52.2279,
             "longitude": 21.0091
-        },
-        {
-            "id": 3,
-            "name": "Michał Kaczmarek",
-            "company_id": 2,
-            "position": "Cleaner",
-            "city": "Kraków",
-            "latitude": 50.0631,
-            "longitude": 19.9422
-        },
-        {
-            "id": 4,
-            "name": "Paweł Nowicki",
-            "company_id": 2,
-            "position": "Supervisor",
-            "city": "Kraków",
-            "latitude": 50.0679,
-            "longitude": 19.9486
         },
         {
             "id": 5,
